@@ -1,7 +1,7 @@
 # colav_protobuf_generator
 
-[![PyPI - Version](https://img.shields.io/pypi/v/colav-protobuf-generator.svg)](https://pypi.org/project/colav-protobuf-generator)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/colav-protobuf-generator.svg)](https://pypi.org/project/colav-protobuf-generator)
+[![PyPI - Version](https://img.shields.io/pypi/v/colav-protobuf-generator.svg)](https://pypi.org/project/colav-protobuf-utils)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/colav-protobuf-generator.svg)](https://pypi.org/project/colav-protobuf-utils)
 
 -----
 
