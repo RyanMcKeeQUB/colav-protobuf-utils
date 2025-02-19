@@ -1,0 +1,28 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_risk_assessment/lib/python3.10/site-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_gateway/lib/python3.10/site-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_interfaces/local/lib/python3.10/dist-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_bringup/lib/python3.10/site-packages",
+        "/home/3507145@eeecs.qub.ac.uk/colav_ws/install/colav_gateway/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_interfaces/local/lib/python3.10/dist-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/src/colav_server/colav_gateway/bin",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/src/colav_server/colav_protobuf/bin",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/src/colav_server/colav_gateway/utils"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_risk_assessment/lib/python3.10/site-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_gateway/lib/python3.10/site-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_interfaces/local/lib/python3.10/dist-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_bringup/lib/python3.10/site-packages",
+        "/home/3507145@eeecs.qub.ac.uk/colav_ws/install/colav_gateway/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/install/colav_interfaces/local/lib/python3.10/dist-packages",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/src/colav_server/colav_gateway/bin",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/src/colav_server/colav_protobuf/bin",
+        "/home/3507145@eeecs.qub.ac.uk/Documents/ColavProject/colav_ws/src/colav_server/colav_gateway/utils"
+    ]
+}
