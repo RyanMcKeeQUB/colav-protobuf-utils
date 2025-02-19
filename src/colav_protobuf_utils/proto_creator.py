@@ -108,6 +108,9 @@ class CTRLMode(Enum):
     FB=4
     WAYPOINT_REACHED=5
 
+class CTRLStatus(Enum): 
+    
+
 def gen_protobuf_controller_feedback(
         mission_tag: str,
         agent_tag: str
