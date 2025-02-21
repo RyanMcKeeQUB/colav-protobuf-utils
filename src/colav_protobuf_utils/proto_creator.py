@@ -113,9 +113,10 @@ class CTRLStatus(Enum):
 
 def gen_protobuf_controller_feedback(
         mission_tag: str,
-        agent_tag: str
-        ctrl_mode: 
-)
+        agent_tag: str,
+        ctrl_mode: str 
+):
+    pass
 
 @staticmethod
 def _gen_state_common_vars(state, pose, velocity: float, yaw_rate: float, acceleration: float):

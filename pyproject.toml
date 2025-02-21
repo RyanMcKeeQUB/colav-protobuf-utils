@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "colav-protobuf-utils"
 dynamic = ["version"]
-description = ''
+description = 'A pkg specifically providing COLAV Protobuf utils'
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"

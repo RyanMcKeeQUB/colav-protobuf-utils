@@ -20,21 +20,35 @@ def deserialise_protobuf(protobuf):
 
 @deserialise_protobuf.register
 def _(protobuf: bytes, type: ProtoType.MISSION_REQUEST) -> MissionRequest:
-    return protobuf.ParseFromString()
+    try: 
+        return protobuf.ParseFromString()
+    except Exception as e:
+        raise
 
 @deserialise_protobuf.register
 def _(protobuf: bytes, type: ProtoType.MISSION_RESPONSE) -> MissionResponse:
-    return protobuf.ParseFromString()
+    try:
+        return protobuf.ParseFromString()
+    except Exception as e:
+        raise
 
 @deserialise_protobuf.register
 def _(protobuf: bytes, type: ProtoType.AGENT_UPDATE) -> AgentUpdate: 
-    return protobuf.ParseFromString()
-
+    try: 
+        return protobuf.ParseFromString()
+    except Exception as e: 
+        raise e
+    
 @deserialise_protobuf.register
 def _(protobuf: bytes, type: ProtoType.OBSTACLES_UPDATE) -> ObstaclesUpdate:
-    return protobuf.ParseFromString()
+    try:
+        return protobuf.ParseFromString()
+    except Exception as e:
+        raise e
 
 @deserialise_protobuf.register
 def _(protobuf: bytes, type: ProtoType.CONTROLLER_FEEDBACK) -> ControllerFeedback:
-    return protobuf.ParseFromString() 
-    
+    try: 
+        return protobuf.ParseFromString() 
+    except Exception as e:
+        raise e

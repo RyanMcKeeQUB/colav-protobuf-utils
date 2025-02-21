@@ -11,25 +11,43 @@ def serialise_protobuf(protobuf) -> bytes:
 
 @serialise_protobuf.register
 def _(protobuf: MissionRequest) -> bytes:
-    return protobuf.SerializeToString()
+    try:
+        return protobuf.SerializeToString()
+    except Exception as e: 
+        raise 
 
 @serialise_protobuf.register
 def _(protobuf: MissionResponse) -> bytes:
-    return protobuf.SerializeToString()
+    try:
+        return protobuf.SerializeToString()
+    except Exception as e: 
+        raise
 
 @serialise_protobuf.register
 def _(protobuf: AgentUpdate) -> bytes: 
-    return protobuf.SerializeToString()
+    try: 
+        return protobuf.SerializeToString()
+    except Exception as e: 
+        raise   
 
 @serialise_protobuf.register
 def _(protobuf: ObstaclesUpdate) -> bytes:
-    return protobuf.SerializeToString()
+    try:
+        return protobuf.SerializeToString()
+    except Exception as e:
+        raise
 
 @serialise_protobuf.register
 def _(protobuf: MissionResponse) -> bytes:
-    return protobuf.SerializeToString() 
+    try:
+        return protobuf.SerializeToString() 
+    except Exception as e:
+        raise
 
 @serialise_protobuf.register
 def _(protobuf: ControllerFeedback) -> bytes:
-    return protobuf.SerializeToString() 
+    try: 
+        return protobuf.SerializeToString() 
+    except Exception as e:
+        raise
     
