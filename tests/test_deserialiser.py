@@ -1,7 +1,7 @@
 import pytest
 
 from colav_protobuf_utils.serialiser import serialise_protobuf
-
+from colav_protobuf_utils.deserialiser import deserialise_protobuf
 from colav_protobuf.examples import mission_request
 from colav_protobuf.examples import mission_response
 
@@ -14,16 +14,16 @@ from colav_protobuf.examples import controller_feedback
 @pytest.mark.parametrize(
     "message",
     [
-        mission_request,
-        mission_response,
-        agent_update,
-        obstacles_update,
-        controller_feedback,
+        serialise_protobuf(mission_request),
+        serialise_protobuf(mission_response),
+        serialise_protobuf(agent_update),
+        serialise_protobuf(obstacles_update),
+        serialise_protobuf(controller_feedback),
     ],
 )
-def test_serialiser(message):
+def test_deserialiser(message):
     try:
-        serialise_protobuf(message)
+        deserialise_protobuf(message)
         assert True
     except Exception:
         assert False

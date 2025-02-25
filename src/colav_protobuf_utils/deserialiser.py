@@ -1,10 +1,11 @@
+from functools import singledispatch
 from colav_protobuf.missionRequest_pb2 import MissionRequest
 from colav_protobuf.missionResponse_pb2 import MissionResponse
 from colav_protobuf.obstaclesUpdate_pb2 import ObstaclesUpdate
 from colav_protobuf.agentUpdate_pb2 import AgentUpdate
-from colav_protobuf.missionResponse_pb2 import MissionResponse
 from colav_protobuf.controllerFeedback_pb2 import ControllerFeedback
 from enum import Enum
+
 
 class ProtoType(Enum):
     MISSION_REQUEST = "mission_request"
@@ -14,41 +15,42 @@ class ProtoType(Enum):
     CONTROLLER_FEEDBACK = "controller_feedback"
 
 
+@singledispatch
 def deserialise_protobuf(protobuf):
-    """Generic Serialiszation function for colav protobuf messages"""
+    """Generic deserialization function for colav protobuf messages"""
     raise TypeError(f"Unsupported protobuf type: {type(protobuf)}")
 
-@deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType.MISSION_REQUEST) -> MissionRequest:
-    try: 
-        return protobuf.ParseFromString()
-    except Exception as e:
-        raise
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType.MISSION_RESPONSE) -> MissionResponse:
-    try:
-        return protobuf.ParseFromString()
-    except Exception as e:
-        raise
+def _(protobuf: bytes, type: ProtoType = ProtoType.MISSION_REQUEST) -> MissionRequest:
+    msg = MissionRequest()
+    msg.ParseFromString(protobuf)
+    return msg
+
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType.AGENT_UPDATE) -> AgentUpdate: 
-    try: 
-        return protobuf.ParseFromString()
-    except Exception as e: 
-        raise e
-    
-@deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType.OBSTACLES_UPDATE) -> ObstaclesUpdate:
-    try:
-        return protobuf.ParseFromString()
-    except Exception as e:
-        raise e
+def _(protobuf: bytes, type: ProtoType = ProtoType.MISSION_RESPONSE) -> MissionResponse:
+    msg = MissionResponse()
+    msg.ParseFromString(protobuf)
+    return msg
+
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType.CONTROLLER_FEEDBACK) -> ControllerFeedback:
-    try: 
-        return protobuf.ParseFromString() 
-    except Exception as e:
-        raise e
+def _(protobuf: bytes, type: ProtoType = ProtoType.AGENT_UPDATE) -> AgentUpdate:
+    msg = AgentUpdate()
+    msg.ParseFromString(protobuf)
+    return msg
+
+
+@deserialise_protobuf.register
+def _(protobuf: bytes, type: ProtoType = ProtoType.OBSTACLES_UPDATE):
+    msg = ObstaclesUpdate()
+    msg.ParseFromString(protobuf)
+    return msg
+
+
+@deserialise_protobuf.register
+def _(protobuf: bytes, type: ProtoType = ProtoType.CONTROLLER_FEEDBACK):
+    msg = ControllerFeedback()
+    msg.ParseFromString(protobuf)
+    return msg

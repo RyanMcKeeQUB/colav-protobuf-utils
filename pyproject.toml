@@ -25,7 +25,10 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "colav-protobuf==0.0.1"
+  "colav-protobuf==0.0.4",
+  "numpy",
+  "shapely",
+  "hatch",
 ]
 
 [project.urls]
