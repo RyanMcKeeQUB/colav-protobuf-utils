@@ -3,9 +3,9 @@ run-name: ${{ github.actor }} is testing colav_protobuf_utils pypi pkg 🚀
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   release:
     types: [created, prereleased, published]
 
