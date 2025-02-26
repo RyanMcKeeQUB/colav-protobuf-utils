@@ -1,4 +1,4 @@
-# colav_protobuf_utils
+# colav-protobuf-utils
 
 [![PyPI - Version](https://img.shields.io/pypi/v/colav-protobuf-utils.svg)](https://pypi.org/project/colav-protobuf-utils)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/colav-protobuf-utils.svg)](https://pypi.org/project/colav-protobuf-utils)
