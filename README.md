@@ -10,16 +10,27 @@ This package simplifies the generation of COLAV Protobuf messages as defined in 
 ## Table of Contents
 
 - [Installation](#installation)
+- [Structure](#structure)
+- [Usage](#usage)
 - [License](#license)
 
 ## Installation
 
-```console
+```bash
 pip install colav-protobuf-utils
 ```
+## Structure
+The src code in [colav_protobuf_utils](https://github.com/RyanMcKeeQUB/colav-protobuf-utils) shows that the project is organised into main directories: 
+- [Tests](https://github.com/RyanMcKeeQUB/colav-protobuf-utils/tree/master/tests): tests that play a part in the CI/CD workflow ensuring the continued working state of this pkg
+- [src/colav_protobuf_utils](https://github.com/RyanMcKeeQUB/colav-protobuf-utils/tree/master/src/colav_protobuf_utils): contains the pkg source code
+    - [protobuf_generator](https://github.com/RyanMcKeeQUB/colav-protobuf-utils/tree/master/src/colav_protobuf_utils/protobuf_generator): Contains several python functions for simplication of the generation of different colav_protobuf messages, examples of usage for this pkg can be found in (usage)[]
+    - [deserialization](https://github.com/RyanMcKeeQUB/colav-protobuf-utils/tree/master/src/colav_protobuf_utils/deserialization): Contains Override functions which deserialise provide abstract deserialization functionlity and validation for different colav-protobuf messages
+    - [serialization](https://github.com/RyanMcKeeQUB/colav-protobuf-utils/tree/master/src/colav_protobuf_utils/serialization): Contains Override functions which abstract protobuf serialization functionality and validate that the different colav-protobuf messages are valid.
 
 ## Usage
-How to use... TODO
+Once pkg has been installed into your environment usage is simple.
+
+### [protobuf_generator] (https://github.com/RyanMcKeeQUB/colav-protobuf-utils/tree/master/src/colav_protobuf_utils/protobuf_generator)
 
 ## License
 

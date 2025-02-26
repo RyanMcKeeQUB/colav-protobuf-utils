@@ -22,35 +22,35 @@ def deserialise_protobuf(protobuf):
 
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType = ProtoType.MISSION_REQUEST) -> MissionRequest:
+def _(protobuf: bytes) -> MissionRequest:
     msg = MissionRequest()
     msg.ParseFromString(protobuf)
     return msg
 
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType = ProtoType.MISSION_RESPONSE) -> MissionResponse:
+def _(protobuf: bytes) -> MissionResponse:
     msg = MissionResponse()
     msg.ParseFromString(protobuf)
     return msg
 
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType = ProtoType.AGENT_UPDATE) -> AgentUpdate:
+def _(protobuf: bytes) -> AgentUpdate:
     msg = AgentUpdate()
     msg.ParseFromString(protobuf)
     return msg
 
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType = ProtoType.OBSTACLES_UPDATE):
+def _(protobuf: bytes):
     msg = ObstaclesUpdate()
     msg.ParseFromString(protobuf)
     return msg
 
 
 @deserialise_protobuf.register
-def _(protobuf: bytes, type: ProtoType = ProtoType.CONTROLLER_FEEDBACK):
+def _(protobuf: bytes):
     msg = ControllerFeedback()
     msg.ParseFromString(protobuf)
     return msg
