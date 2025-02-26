@@ -1,2 +1,3 @@
 twine
 hatch
+colav-protobuf==0.0.9
