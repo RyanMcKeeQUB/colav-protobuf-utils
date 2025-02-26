@@ -1,7 +1,7 @@
 import pytest
 
-from colav_protobuf_utils.serialiser import serialise_protobuf
-from colav_protobuf_utils.deserialiser import deserialise_protobuf
+from colav_protobuf_utils.serialization.serialiser import serialise_protobuf
+from colav_protobuf_utils.deserialization.deserialiser import deserialise_protobuf
 from colav_protobuf.examples import mission_request
 from colav_protobuf.examples import mission_response
 
