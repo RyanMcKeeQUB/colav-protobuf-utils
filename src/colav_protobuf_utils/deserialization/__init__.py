@@ -1,5 +1,3 @@
-from deserialiser import deserialise_protobuf
+from .deserialiser import deserialise_protobuf
 
-__all__ = [
-    "deserialise_protobuf"
-]
+__all__ = ["deserialise_protobuf"]
