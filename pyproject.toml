@@ -46,6 +46,10 @@ extra-dependencies = [
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/colav_protobuf_utils tests}"
 
+[tool.hatch.envs.test]
+dependencies = ["pytest", "lark", "pyyaml"]
+
+
 [tool.coverage.run]
 source_pkgs = ["colav_protobuf_utils", "tests"]
 branch = true
