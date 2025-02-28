@@ -32,3 +32,36 @@ def test_deserialiser(message):
 def test_deserialiser_invalid_message():
     with pytest.raises(Exception):
         deserialise_protobuf(b"invalid message")
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "tag",
+        "timestamp",
+        "vessel.tag",
+        "vessel.type",
+        "vessel.constraints.max_acceleration",
+        "vessel.constraints.max_deceleration",
+        "vessel.constraints.max_velocity",
+        "vessel.constraints.min_velocity",
+        "vessel.constraints.max_yaw_rate",
+    ],
+)
+def test_mission_request_validation(field):
+    field_parts = field.split(".")
+    mission_request
+    for part in field_parts:
+        value = getattr()
+
+
+def test_mission_response_validation():
+    pass
+
+
+def test_agent_update_validation():
+    pass
+
+
+def test_obstacles_update_validation():
+    pass
