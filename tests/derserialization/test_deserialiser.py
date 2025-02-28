@@ -11,6 +11,12 @@ from colav_protobuf.examples import obstacles_update
 from colav_protobuf.examples import controller_feedback
 
 from colav_protobuf_utils import VesselType, ProtoType
+from colav_protobuf_utils.deserialization.deserializer import (
+    INVALID_MISSION_TAG_MSG,
+    INVALID_MISSION_TIMESTAMP_MSG,
+    INVALID_VESSEL_TAG_MSG,
+    INVALID_CONSTRAINT_MSG,
+)
 
 PROTO_TYPE = ProtoType.MISSION_REQUEST
 
@@ -34,29 +40,78 @@ def test_deserialiser(message):
         assert False
 
 
-# # def test_deserialiser_invalid_message():
-# #     with pytest.raises(Exception):
-# #         deserialise_protobuf(b"invalid message")
-# @pytest.mark.parametrize(
-#     "field",
-#     [
-#         "tag",
-#         # "timestamp",
-#         # "vessel.tag",
-#         # "vessel.type",
-#         # "vessel.constraints.max_acceleration",
-#         # "vessel.constraints.max_deceleration",
-#         # "vessel.constraints.max_velocity",
-#         # "vessel.constraints.min_velocity",
-#         # "vessel.constraints.max_yaw_rate",
-#     ],
-# )
-# def test_mission_request_validation(field):
+# def test_deserialiser_invalid_message():
+#     with pytest.raises(Exception):
+#         deserialise_protobuf(b"invalid message")
+@pytest.mark.parametrize(
+    "test, field, empty_value, exception_message",
+    [
+        ("empty missionRequest tag", "tag", "", INVALID_MISSION_TAG_MSG),
+        (
+            "empty missionRequest timestamp",
+            "timestamp",
+            "",
+            INVALID_MISSION_TIMESTAMP_MSG,
+        ),
+        ("empty missionRequest vessel.tag", "vessel.tag", "", INVALID_VESSEL_TAG_MSG),
+        (
+            "empty missionRequest max acceleration",
+            "vessel.constraints.max_acceleration",
+            "None has type NoneType, but expected one of: int, float",
+            INVALID_CONSTRAINT_MSG.format("max_acceleration"),
+        ),
+        (
+            "empty missionRequest max_deceleration",
+            "vessel.constraints.max_deceleration",
+            None,
+            "None has type NoneType, but expected one of: int, float",
+        ),
+        (
+            "empty missionRequest max_velocity",
+            "vessel.constraints.max_velocity",
+            None,
+            INVALID_CONSTRAINT_MSG.format("max_velocity"),
+        ),
+        (
+            "empty missionRequest min_velocity",
+            "vessel.constraints.min_velocity",
+            None,
+            INVALID_CONSTRAINT_MSG.format("min_velocity"),
+        ),
+        (
+            "empty missionRequest max_yaw_rate",
+            "vessel.constraints.max_yaw_rate",
+            None,
+            INVALID_CONSTRAINT_MSG.format("max_yaw_rate"),
+        ),
+        # "vessel.constraints.max_velocity",
+        # "vessel.constraints.min_velocity",
+        # "vessel.constraints.max_yaw_rate",
+    ],
+)
+def test_invalid_mission_request_empty_fields(
+    test, field, empty_value, exception_message
+):
 
-#     invalid_mission_request = setattr(mission_request, field, "")
-#     serialised_invalid_msg = serialize_protobuf(invalid_mission_request)
-#     print(deserialize_protobuf(proto=serialised_invalid_msg, proto_type=PROTO_TYPE))
-#     raise Exception
+    invalid_mission_request = mission_request
+    _set_nested_attr(invalid_mission_request, field, empty_value)
+
+    with pytest.raises(ValueError) as excinfo:
+        deserialize_protobuf(
+            protobuf=serialize_protobuf(invalid_mission_request), proto_type=PROTO_TYPE
+        )
+    assert exception_message in str(excinfo.value)
+
+
+def _set_nested_attr(obj, attr_path, value):
+    """Set a nested attribute by traversing dot-separated fields."""
+    attrs = attr_path.split(".")
+    for attr in attrs[:-1]:  # Traverse until the second last attribute
+        obj = getattr(obj, attr, None)
+        if obj is None:
+            raise AttributeError(f"Attribute '{attr}' not found in object.")
+
+    setattr(obj, attrs[-1], value)  # Set the final attribute
 
 
 # # def test_mission_response_validation():

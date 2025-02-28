@@ -21,7 +21,7 @@ class ProtoType(Enum):
 
 # Define constants for error messages for easy maintenance
 INVALID_MISSION_TAG_MSG = "MissionRequest tag is empty"
-INVALID_MISSION_TIMESTAMP = "MissionRequest timestamp is empty"
+INVALID_MISSION_TIMESTAMP_MSG = "MissionRequest timestamp is empty"
 INVALID_VESSEL_TAG_MSG = "MissionRequest vessel tag is empty"
 INVALID_VESSEL_TYPE_MSG = "MissionRequest vessel type is invalid, Needs to be one of the values assigned in colav_protobuf_utils.protobuf_generator.mission_request.VesselType"
 INVALID_CONSTRAINT_MSG = "MissionRequest vessel constraints, {} invalid"
@@ -73,11 +73,7 @@ def _max_radius(beam: float, loa: float) -> float:
     return diagonal / 2
 
 
-def deserialize_protobuf(
-    protobuf: bytes, proto_type: ProtoType
-) -> Union[
-    MissionRequest, MissionResponse, AgentUpdate, ObstaclesUpdate, ControllerFeedback
-]:
+def deserialize_protobuf(protobuf: bytes, proto_type: ProtoType):
     """deserialization dispatcher for colav protobuf messages"""
     try:
         if proto_type == ProtoType.MISSION_REQUEST:
@@ -103,6 +99,8 @@ def _deserialize_mission_request(protobuf: bytes) -> MissionRequest:
     """Deserialise MissionRequest protobuf message and validate its fields"""
     msg = MissionRequest()
     msg.ParseFromString(protobuf)
+
+    print(msg)
 
     # Validation checks
     if not msg.tag:
