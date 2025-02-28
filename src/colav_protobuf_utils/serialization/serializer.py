@@ -1,52 +1,34 @@
-from functools import singledispatch
 from colav_protobuf import MissionRequest
 from colav_protobuf import MissionResponse
 from colav_protobuf import ObstaclesUpdate
 from colav_protobuf import AgentUpdate
 from colav_protobuf import ControllerFeedback
+from colav_protobuf_utils import ProtoType
+from typing import Union
 
 
-@singledispatch
-def serialise_protobuf(protobuf) -> bytes:
-    """Generic Serialization function for colav protobuf messages."""
-    raise TypeError(f"Unsupported protobuf type: {type(protobuf)}")
+def serialize_protobuf(
+    protobuf: Union[
+        MissionRequest,
+        MissionResponse,
+        AgentUpdate,
+        ObstaclesUpdate,
+        ControllerFeedback,
+    ]
+) -> bytes:
+    if not isinstance(
+        protobuf,
+        (
+            MissionRequest,
+            MissionResponse,
+            AgentUpdate,
+            ObstaclesUpdate,
+            ControllerFeedback,
+        ),
+    ):
+        raise TypeError("protobuf must be one of the defined types in the Union")
 
-
-@serialise_protobuf.register
-def _(protobuf: MissionRequest) -> bytes:
     try:
         return protobuf.SerializeToString()
     except Exception as e:
-        raise Exception(f"Error serializing MissionRequest: {e}")
-
-
-@serialise_protobuf.register
-def _(protobuf: MissionResponse) -> bytes:
-    try:
-        return protobuf.SerializeToString()
-    except Exception as e:
-        raise Exception(f"Error serializing MissionResponse: {e}")
-
-
-@serialise_protobuf.register
-def _(protobuf: AgentUpdate) -> bytes:
-    try:
-        return protobuf.SerializeToString()
-    except Exception as e:
-        raise Exception(f"Error serializing AgentUpdate: {e}")
-
-
-@serialise_protobuf.register
-def _(protobuf: ObstaclesUpdate) -> bytes:
-    try:
-        return protobuf.SerializeToString()
-    except Exception as e:
-        raise Exception(f"Error serializing ObstaclesUpdate: {e}")
-
-
-@serialise_protobuf.register
-def _(protobuf: ControllerFeedback) -> bytes:
-    try:
-        return protobuf.SerializeToString()
-    except Exception as e:
-        raise Exception(f"Error serializing ControllerFeedback: {e}")
+        raise Exception(f"Error serializing protobuf: {e}")

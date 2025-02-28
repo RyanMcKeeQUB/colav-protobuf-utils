@@ -1,3 +1,3 @@
-from .serializer import serialise_protobuf
+from .serializer import serialize_protobuf
 
-__all__ = ["serialise_protobuf"]
+__all__ = ["serialize_protobuf"]
